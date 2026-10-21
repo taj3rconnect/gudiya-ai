@@ -431,4 +431,28 @@ const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.targ
 const nl=[...$('nav a')],spy=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){nl.forEach(a=>a.classList.toggle('on',a.dataset.nav===x.target.id))}}),{rootMargin:'-30% 0px -65% 0px'});$('.sec').forEach(s=>spy.observe(s));
 const nav=document.querySelector('nav');document.querySelector('.menu').onclick=()=>nav.classList.toggle('open');nl.forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 })();
-</script></body></html>
+</script><style>.tm-bd{position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,.45);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.tm-bd.on{opacity:1;visibility:visible}.tm{background:#fff;border-radius:18px;max-width:680px;width:100%;max-height:90vh;overflow:auto;padding:28px 26px;position:relative;box-shadow:0 24px 60px rgba(15,23,42,.3);transform:scale(.96) translateY(10px);transition:transform .25s}
+.tm-bd.on .tm{transform:none}.tm-x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:#f1f5f9;font-size:20px;cursor:pointer;color:#334155}.tm-x:hover{background:#e2e8f0}
+.tm .tp{display:inline-block;background:#dcfce7;color:#14532d;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:20px;padding:4px 12px}
+.tm h2{font-size:clamp(22px,4vw,30px);line-height:1.2;margin:12px 0 4px;color:var(--ink,#1a1f36)}.tm .dt{color:#697386;font-size:13px;margin:0 0 12px}
+.tm .bx{border:1px solid #e3e8ee;border-radius:12px;padding:12px 14px;margin:12px 0}.tm .bx b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#697386;margin-bottom:4px}
+.tm .say{background:#f0fdf4;border-color:#bbf7d0}.tm .cp{font:600 12px inherit;border:1px solid #e3e8ee;background:#fff;border-radius:7px;padding:5px 10px;cursor:pointer;margin-top:8px}
+.tm .em{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;margin-top:12px}.tm .em iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media (max-width:520px){.tm{padding:22px 16px;border-radius:14px}}@media (prefers-reduced-motion:reduce){.tm-bd,.tm{transition:none}}</style>
+<div class="tm-bd" id="tmBd" aria-hidden="true"><div class="tm" role="dialog" aria-modal="true" aria-labelledby="tmH"><button class="tm-x" aria-label="Close">×</button><div id="tmC">Loading…</div></div></div>
+<script>(()=>{const bd=document.getElementById('tmBd'),C=document.getElementById('tmC');let last;
+const E=x=>String(x??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=d=>new Date(d+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+function close(){bd.classList.remove('on');bd.setAttribute('aria-hidden','true');setTimeout(()=>{const f=C.querySelector('iframe');if(f)f.remove();C.innerHTML='Loading…'},260);if(last)last.focus()}
+async function open(e){e.preventDefault();last=e.currentTarget;bd.classList.add('on');bd.setAttribute('aria-hidden','false');bd.querySelector('.tm-x').focus();
+try{const{items}=await (await fetch('today.json?'+Date.now())).json();const t=items[0];
+let h=`<span class="tp">${E(t.product)}</span><h2 id="tmH">${E(t.headline)}</h2><p class="dt">${fmt(t.date)}</p><p>${E(t.explanation)}</p><div class="bx"><b>Why it matters for you</b>${E(t.why)}</div><div class="bx say"><b>Say this to your team</b>“${E(t.say)}”<br><button class="cp">Copy</button></div>`;
+if(t.video)h+=`<div class="em"><iframe src="https://www.youtube-nocookie.com/embed/${E(t.video)}?rel=0" title="${E(t.video_title||'Video')}" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>`;
+h+=`<p class="dt" style="margin-top:12px">Source: <a href="${E(t.source)}" target="_blank" rel="noopener">${E(t.source_label||t.source)}</a> · <a href="today.html">Earlier tips</a></p>`;C.innerHTML=h;
+C.querySelector('.cp').onclick=async ev=>{try{await navigator.clipboard.writeText(t.say)}catch(_){}ev.target.textContent='Copied ✓';setTimeout(()=>ev.target.textContent='Copy',1600)};
+}catch(_){C.innerHTML='<p>Today\'s tip is on its way. Please check back soon.</p>'}}
+document.querySelectorAll('a.tpill').forEach(a=>a.addEventListener('click',open));
+bd.querySelector('.tm-x').onclick=close;bd.addEventListener('click',e=>{if(e.target===bd)close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&bd.classList.contains('on'))close()});})();</script>
+</body></html>
