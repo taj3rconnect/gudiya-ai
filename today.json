@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "date": "2026-10-21",
+      "product": "Claude",
+      "headline": "Now Claude can build live dashboards that stay up to date",
+      "explanation": "Anthropic launched Claude Dashboards in beta on paid plans (announced October 8, 2026). You connect a data source and ask a question in plain language; Claude builds the dashboard, keeps it current as the data changes, and lets you click any number to see the query behind it. In the same update, Claude Docs, Slides, and Design came out of beta for every plan.",
+      "why": "For QA and project work, this is the grown-up version of your Day 10 exercise: a status or defect dashboard you don't rebuild every week, where every number can be checked. At work, it depends on which data connections Fiserv approves.",
+      "say": "Did you know Claude can now build a live dashboard from our data, and show the exact query behind every number?",
+      "source": "https://claude.com/resources/articles/dashboards-and-motion",
+      "source_label": "claude.com: Build live dashboards and animate explainers with Claude",
+      "video": "kj-SJaaVpMw",
+      "video_title": "Claude's NEW Dashboard Feature for Project Management (Blazing Zebra)"
+    }
+  ]
+}
