@@ -208,8 +208,8 @@ Merchant Support,Luis Gomez,Training delivered,2026-12-01,15,Red,180000,60000
 Engineering Build,Raj Patel,Build complete,2026-10-31,95,Green,550000,560000</pre></div><p class="mut"><i>All names, figures, and dates above are invented for practice.</i></p></section>
 <footer>Rashmina's 2-Week AI Roadmap · made with love</footer></main></div>
 <div class="toast" role="status" aria-live="polite"></div>
-<button class="fab" aria-label="Ask Gudiya a question">💬</button><div class="fab-l">Ask Gudiya</div>
-<div class="ask" role="dialog" aria-label="Ask Gudiya"><button class="x" aria-label="Close">×</button><h4>Ask Gudiya</h4><p>Stuck or curious? Ask anything and you'll get an answer by email.</p>
+<button class="fab" aria-label="Ask Grok a question">💬</button><div class="fab-l">Ask Grok</div>
+<div class="ask" role="dialog" aria-label="Ask Grok"><button class="x" aria-label="Close">×</button><h4>Ask Grok</h4><p>Stuck or curious? Ask anything and you'll get an answer by email.</p>
 <textarea placeholder="Type your question…" maxlength="4000"></textarea><div class="row"><select><option value="">Which day? (optional)</option><option value="1">Day 1</option><option value="2">Day 2</option><option value="3">Day 3</option><option value="4">Day 4</option><option value="5">Day 5</option><option value="6">Day 6</option><option value="7">Day 7</option><option value="8">Day 8</option><option value="9">Day 9</option><option value="10">Day 10</option><option value="11">Day 11</option><option value="12">Day 12</option><option value="13">Day 13</option><option value="14">Day 14</option></select><button class="send">Send</button></div></div>
 <script src="config.js"></script>
 <script>
@@ -226,7 +226,7 @@ try{const r=await fetch(CFG.webhookUrl,{method:'POST',headers:h,body:JSON.string
 const fab=document.querySelector('.fab'),ask=document.querySelector('.ask'),ta=ask.querySelector('textarea'),sel=ask.querySelector('select'),snd=ask.querySelector('.send');
 fab.onclick=()=>{ask.classList.toggle('open');if(ask.classList.contains('open'))setTimeout(()=>ta.focus(),200)};ask.querySelector('.x').onclick=()=>ask.classList.remove('open');
 snd.onclick=async()=>{const q=ta.value.trim();if(!q){toast('Type a question first');ta.focus();return}if(!CFG.webhookUrl){toast('Questions aren’t switched on yet. Please try again soon.');return}snd.disabled=true;const ok=await hook('question',sel.value?+sel.value:null,q);snd.disabled=false;
-if(ok){ta.value='';sel.value='';ask.classList.remove('open');toast('Sent! Gudiya will email you an answer shortly.')}else toast('Hmm, that didn’t go through. Please try again in a moment.')};
+if(ok){ta.value='';sel.value='';ask.classList.remove('open');toast('Sent! Grok will email you an answer shortly.')}else toast('Hmm, that didn’t go through. Please try again in a moment.')};
 document.querySelector('.reset').onclick=()=>{const snap={...S};toast('Checkmarks cleared.',['Undo',()=>{Object.assign(S,snap);save();boxes.forEach(b=>b.checked=!!S[b.dataset.k]);upd()}]);for(const k in S)delete S[k];save();boxes.forEach(b=>b.checked=false);upd()};
 async function cp(t){try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.append(a);a.select();document.execCommand('copy');a.remove()}toast('Copied to clipboard')}
 $('.copy').forEach(b=>b.onclick=()=>cp(b.dataset.copy??document.getElementById(b.dataset.copyFrom).textContent));
