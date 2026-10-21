@@ -1,2 +1,34 @@
-{"name":"Gudiya AI","short_name":"Gudiya","description":"Rashmina's 2-week AI roadmap","start_url":"/gudiya-ai/","scope":"/gudiya-ai/","display":"standalone","theme_color":"#e9e3ff","background_color":"#fff7f2",
-"icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"},{"src":"icons/maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
+{
+ "name": "Gudiya AI",
+ "short_name": "Gudiya",
+ "description": "Rashmina's 2-week AI roadmap",
+ "start_url": "/gudiya-ai/",
+ "scope": "/gudiya-ai/",
+ "display": "standalone",
+ "theme_color": "#e9e3ff",
+ "background_color": "#fff7f2",
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "icons/apple-touch-icon.png",
+   "sizes": "180x180",
+   "type": "image/png"
+  }
+ ],
+ "id": "/gudiya-ai/"
+}
