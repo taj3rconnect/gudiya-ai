@@ -6,6 +6,7 @@ const css=`.ad-p{position:fixed;right:16px;bottom:84px;width:min(380px,calc(100v
 .ad-u{align-self:flex-end;background:#7b2ff7;color:#fff;border-bottom-right-radius:4px}.ad-a{align-self:flex-start;background:#fff;border:1px solid #eadcff;color:#2b1a3d;border-bottom-left-radius:4px}.ad-e{align-self:center;background:#fff0f3;color:#a0153e;font-size:.85rem}
 .ad-t span{display:inline-block;width:7px;height:7px;margin:0 2px;border-radius:50%;background:#b28cf5;animation:adb 1s infinite}.ad-t span:nth-child(2){animation-delay:.15s}.ad-t span:nth-child(3){animation-delay:.3s}@keyframes adb{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}
 .ad-f{display:flex;gap:6px;padding:10px;border-top:1px solid #eee;background:#fff}.ad-f textarea{flex:1;resize:none;border:1px solid #ddd;border-radius:14px;padding:9px 11px;font:inherit;font-size:16px;max-height:110px}.ad-f button{border:0;border-radius:14px;background:#7b2ff7;color:#fff;padding:0 16px;font-weight:600;cursor:pointer}.ad-f button:disabled{opacity:.5}
+.ad-v{align-self:flex-start;display:flex;flex-direction:column;gap:6px;max-width:85%}.ad-v a{display:flex;gap:9px;align-items:center;background:#fff;border:1px solid #f3c4e4;border-radius:14px;padding:6px;text-decoration:none;color:#2b1a3d}.ad-v a:hover{border-color:#f107a3}.ad-v img{width:96px;height:54px;object-fit:cover;border-radius:9px;flex:none}.ad-v .vt{font-size:.85rem;font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.ad-v .vc{font-size:.75rem;color:#8a6aa8;margin-top:2px}.ad-v .vl{font-size:.75rem;color:#a0153e;font-weight:600}
 @media(max-width:600px){.ad-p{right:0;left:0;bottom:0;width:100vw;height:100dvh;border-radius:0}}`;
 const s=document.createElement('style');s.textContent=css;document.head.append(s);
 const p=document.createElement('div');p.className='ad-p';p.setAttribute('role','dialog');p.setAttribute('aria-label','Ask Dad chat');
@@ -14,7 +15,8 @@ document.body.append(p);const M=p.querySelector('.ad-m'),ta=p.querySelector('tex
 let H=[];try{H=JSON.parse(localStorage.getItem(K)||'[]')}catch(e){}
 const save=()=>localStorage.setItem(K,JSON.stringify(H.slice(-60)));
 function add(c,t){const d=document.createElement('div');d.className='ad-b '+c;d.textContent=t;M.append(d);M.scrollTop=M.scrollHeight;return d}
-function render(){M.innerHTML='';add('ad-a','Hi Gudiya 💜 Ask me anything about the course, a tool, or your day. I\'m here.');H.forEach(m=>add(m.role==='user'?'ad-u':'ad-a',m.content))}
+function vids(v){if(!v||!v.length)return;const w=document.createElement('div');w.className='ad-v';w.innerHTML='<div class="vl">▶ Watch this</div>';v.forEach(x=>{const m=(x.url||'').match(/v=([\w-]{11})/);if(!m)return;const a=document.createElement('a');a.href='https://www.youtube.com/watch?v='+m[1];a.target='_blank';a.rel='noopener';const i=document.createElement('img');i.src='https://i.ytimg.com/vi/'+m[1]+'/mqdefault.jpg';i.alt='';i.loading='lazy';const d=document.createElement('div');const t=document.createElement('div');t.className='vt';t.textContent=x.title||'YouTube video';const c=document.createElement('div');c.className='vc';c.textContent=(x.channel||'')+(x.date?' · '+x.date:'');d.append(t,c);a.append(i,d);w.append(a)});M.append(w);M.scrollTop=M.scrollHeight}
+function render(){M.innerHTML='';add('ad-a','Hi Gudiya 💜 Ask me anything about the course, a tool, or your day. I\'m here.');H.forEach(m=>{add(m.role==='user'?'ad-u':'ad-a',m.content);vids(m.videos)})}
 render();
 const old=document.querySelector('.fab');const oldAsk=document.querySelector('.ask');if(oldAsk)oldAsk.remove();
 let fab=old;if(old){fab=old.cloneNode(true);old.replaceWith(fab)}
@@ -28,8 +30,8 @@ p.querySelector('form').onsubmit=async e=>{e.preventDefault();const q=ta.value.t
 ta.value='';ta.style.height='auto';H.push({role:'user',content:q});save();add('ad-u',q);
 const t=add('ad-a ad-t','');t.innerHTML='<span></span><span></span><span></span>';btn.disabled=true;
 try{if(!URL_)throw new Error('Dad\'s chat is getting set up. Please try again soon.');
-const r=await fetch(URL_+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:H.slice(-20)})});
+const r=await fetch(URL_+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:H.slice(-20).map(m=>({role:m.role,content:m.content}))})});
 const d=await r.json().catch(()=>({}));if(!r.ok||!d.answer)throw new Error(d.error||'Hmm, that didn’t go through. Please try again in a moment.');
-t.remove();H.push({role:'assistant',content:d.answer});save();add('ad-a',d.answer)}
+t.remove();const vv=Array.isArray(d.videos)?d.videos.slice(0,2):[];H.push({role:'assistant',content:d.answer,videos:vv});save();add('ad-a',d.answer);vids(vv)}
 catch(err){t.remove();H.pop();save();add('ad-e',err.message);ta.value=q}finally{btn.disabled=false}};
 })();
