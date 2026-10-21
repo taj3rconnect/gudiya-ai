@@ -36,16 +36,24 @@ auto.checked=localStorage.getItem(K+'-auto')==='1';auto.onchange=()=>localStorag
 function note(t){const d=add('ad-b ad-n',t);setTimeout(()=>d.remove(),6000)}
 function grow(){ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight,110)+'px'}
 function done(){mic.classList.remove('on','busy');mic.setAttribute('aria-label','Speak your question');if(auto.checked&&ta.value.trim())p.querySelector('form').requestSubmit();else ta.focus()}
+const ANDROID=/Android/i.test(navigator.userAgent);
+// Rebuild the transcript from scratch on every result. Android Chrome re-sends cumulative
+// results ("How", "How can", "How can I"...), so a segment that extends the previous one replaces it.
+function srText(R){const fin=[];let interim='';const norm=x=>x.toLowerCase().replace(/\s+/g,' ').trim();
+ for(let i=0;i<R.length;i++){const t=(R[i][0]&&R[i][0].transcript||'').trim();if(!t)continue;
+  if(R[i].isFinal){const l=fin.length?norm(fin[fin.length-1]):null;if(l!==null&&norm(t).startsWith(l))fin[fin.length-1]=t;else if(l!==null&&l.startsWith(norm(t))){}else fin.push(t)}else interim=t}
+ let f=fin.join(' ');if(interim){const n=norm(interim),nf=norm(f);if(nf&&n.startsWith(nf))f=interim;else if(!(nf&&nf.endsWith(n)))f=(f?f+' ':'')+interim}return f.trim()}
+window.__askdadSrText=srText;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,listening=false,base='',heard=false;
 if(SR){mic.hidden=false;opt.hidden=false;
  mic.onclick=()=>{if(listening){rec&&rec.stop();return}
-  rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=true;base=ta.value.trim()?ta.value.trim()+' ':'';heard=false;
-  rec.onresult=e=>{let t='';for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript;heard=heard||!!t.trim();ta.value=base+t;grow()};
+  rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=!ANDROID;base=ta.value.trim()?ta.value.trim()+' ':'';heard=false;
+  rec.onresult=e=>{const t=srText(e.results);heard=heard||!!t;ta.value=base+t;grow()};
   rec.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed')note('🎤 I need permission to use your microphone. Tap the lock icon by the address bar, allow the microphone, then try again.');else if(e.error==='no-speech')note('I didn’t hear anything. Tap the mic and try again 💜');else if(e.error==='audio-capture')note('No microphone found on this device.');else if(e.error!=='aborted')note('Voice typing had a hiccup. Please try again or type instead.')};
   rec.onend=()=>{listening=false;if(!heard&&!ta.value.trim()){}done()};
   try{rec.start();listening=true;mic.classList.add('on');mic.setAttribute('aria-label','Stop listening')}catch(e){note('Voice typing isn’t available right now. Please type instead.')}};
 }else if(window.MediaRecorder&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&URL_){mic.hidden=false;opt.hidden=false;let mr=null,chunks=[],stream=null;
- mic.onclick=async()=>{if(mr&&mr.state==='recording'){mr.stop();return}
+ mic.onclick=async()=>{if(mic.classList.contains('busy'))return;if(mr&&mr.state==='recording'){mr.stop();return}
   try{stream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){note(e&&e.name==='NotFoundError'?'No microphone found on this device.':'🎤 I need permission to use your microphone. Allow it in your browser settings, then try again.');return}
   const type=['audio/webm;codecs=opus','audio/ogg;codecs=opus','audio/mp4'].find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
   mr=new MediaRecorder(stream,type?{mimeType:type}:{});chunks=[];mr.ondataavailable=e=>e.data.size&&chunks.push(e.data);
