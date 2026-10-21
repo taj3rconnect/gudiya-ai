@@ -10,7 +10,9 @@
       "source": "https://claude.com/resources/articles/dashboards-and-motion",
       "source_label": "claude.com: Build live dashboards and animate explainers with Claude",
       "video": "kj-SJaaVpMw",
-      "video_title": "Claude's NEW Dashboard Feature for Project Management (Blazing Zebra)"
+      "video_title": "Claude's NEW Dashboard Feature for Project Management (Blazing Zebra)",
+      "tool": "Claude",
+      "prompt": "Hi Claude! I'm a QA and project coordinator (I'm practicing with made-up, non-confidential data only). Build me a live QA status dashboard from this sample data: [paste the made-up defect list or test results]. Show KPI cards (tests run, pass rate, open Sev1/Sev2), a defects-by-severity chart, and a short 'needs attention' list. Explain how each number is calculated so I can check it."
     }
   ]
 }

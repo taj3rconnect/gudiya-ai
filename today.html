@@ -23,9 +23,10 @@ fetch('today.json?'+Date.now()).then(r=>r.json()).then(({items})=>{const id=new 
 let h=`<span class="pill">${E(t.product)}</span><h1>${E(t.headline)}</h1><p class="date">${fmt(t.date)}</p><p>${E(t.explanation)}</p>
 <div class="card"><div class="l">Why it matters for you</div>${E(t.why)}</div>
 <div class="card say"><div class="l">Say this to your team</div>“${E(t.say)}”<br><button class="copy">Copy</button></div>`;
+if(t.prompt)h+=`<div class="card"><div class="l">Try this prompt in ${E(t.tool||t.product)}</div><p style="white-space:pre-wrap">${E(t.prompt)}</p><button class="copy" id="cpp">📋 Copy prompt</button></div>`;
 if(t.video)h+=`<div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/${E(t.video)}?rel=0" title="${E(t.video_title||'Video')}" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div><p class="date">${E(t.video_title||'')} · <a href="https://www.youtube.com/watch?v=${E(t.video)}" target="_blank" rel="noopener">Open on YouTube ↗</a></p>`;
 h+=`<p>Source: <a href="${E(t.source)}" target="_blank" rel="noopener">${E(t.source_label||t.source)}</a></p>`;
 const past=items.filter(i=>i!==t);if(past.length)h+=`<h3>Earlier tips</h3><ul class="arch">${past.map(i=>`<li><a href="?d=${E(i.date)}">${E(i.headline)}</a><div class="m">${E(i.product)} · ${fmt(i.date)}</div></li>`).join('')}</ul>`;
-document.getElementById('m').innerHTML=h;document.querySelector('.copy').onclick=async()=>{try{await navigator.clipboard.writeText(t.say)}catch(e){}const T=document.querySelector('.toast');T.textContent='Copied';T.classList.add('on');setTimeout(()=>T.classList.remove('on'),1800)};
+document.getElementById('m').innerHTML=h;const P=document.getElementById('cpp');if(P)P.onclick=async()=>{try{await navigator.clipboard.writeText(t.prompt)}catch(e){}const T=document.querySelector('.toast');T.textContent='Copied!';T.classList.add('on');setTimeout(()=>T.classList.remove('on'),1800)};document.querySelector('.copy').onclick=async()=>{try{await navigator.clipboard.writeText(t.say)}catch(e){}const T=document.querySelector('.toast');T.textContent='Copied';T.classList.add('on');setTimeout(()=>T.classList.remove('on'),1800)};
 }).catch(()=>{document.getElementById('m').innerHTML='<p>Today\'s tip is on its way. Please check back soon.</p>'});
 </script></body></html>
