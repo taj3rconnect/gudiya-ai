@@ -45,24 +45,33 @@ function srText(R){const fin=[];let interim='';const norm=x=>x.toLowerCase().rep
  let f=fin.join(' ');if(interim){const n=norm(interim),nf=norm(f);if(nf&&n.startsWith(nf))f=interim;else if(!(nf&&nf.endsWith(n)))f=(f?f+' ':'')+interim}return f.trim()}
 window.__askdadSrText=srText;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,listening=false,base='',heard=false;
-if(SR){mic.hidden=false;opt.hidden=false;
+const MOBILE=ANDROID||/iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)||(navigator.userAgentData&&navigator.userAgentData.mobile);
+if(SR&&!MOBILE){mic.hidden=false;opt.hidden=false;
  mic.onclick=()=>{if(listening){rec&&rec.stop();return}
   rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=!ANDROID;base=ta.value.trim()?ta.value.trim()+' ':'';heard=false;
   rec.onresult=e=>{const t=srText(e.results);heard=heard||!!t;ta.value=base+t;grow()};
   rec.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed')note('🎤 I need permission to use your microphone. Tap the lock icon by the address bar, allow the microphone, then try again.');else if(e.error==='no-speech')note('I didn’t hear anything. Tap the mic and try again 💜');else if(e.error==='audio-capture')note('No microphone found on this device.');else if(e.error!=='aborted')note('Voice typing had a hiccup. Please try again or type instead.')};
   rec.onend=()=>{listening=false;if(!heard&&!ta.value.trim()){}done()};
   try{rec.start();listening=true;mic.classList.add('on');mic.setAttribute('aria-label','Stop listening')}catch(e){note('Voice typing isn’t available right now. Please type instead.')}};
-}else if(window.MediaRecorder&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&URL_){mic.hidden=false;opt.hidden=false;let mr=null,chunks=[],stream=null;
- mic.onclick=async()=>{if(mic.classList.contains('busy'))return;if(mr&&mr.state==='recording'){mr.stop();return}
-  try{stream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){note(e&&e.name==='NotFoundError'?'No microphone found on this device.':'🎤 I need permission to use your microphone. Allow it in your browser settings, then try again.');return}
-  const type=['audio/webm;codecs=opus','audio/ogg;codecs=opus','audio/mp4'].find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
-  mr=new MediaRecorder(stream,type?{mimeType:type}:{});chunks=[];mr.ondataavailable=e=>e.data.size&&chunks.push(e.data);
-  mr.onstop=async()=>{stream.getTracks().forEach(t=>t.stop());mic.classList.remove('on');mic.classList.add('busy');const b=new Blob(chunks,{type:mr.mimeType||'audio/webm'});
+}else if(window.MediaRecorder&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&URL_){mic.hidden=false;opt.hidden=false;let mr=null,chunks=[],stream=null,ac=null,tick=null,maxT=null,sent=false;
+ // Mobile (incl. Android): record only, transcribe once via our /stt (xAI). Never uses the browser speech engine.
+ const setMic=(on)=>{mic.classList.toggle('on',on);mic.setAttribute('aria-label',on?'Listening… tap to stop':'Speak your question');mic.title=on?'Listening… tap to stop':'Tap to speak';ta.placeholder=on?'Listening… tap 🎤 to stop':'Ask me anything…'};
+ const cleanup=()=>{clearInterval(tick);clearTimeout(maxT);tick=maxT=null;try{ac&&ac.close()}catch(e){}ac=null;stream&&stream.getTracks().forEach(t=>t.stop())};
+ const stop=()=>{if(mr&&mr.state==='recording')mr.stop()};
+ mic.onclick=async()=>{if(mic.classList.contains('busy'))return;if(mr&&mr.state==='recording'){stop();return}
+  try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}})}catch(e){note(e&&e.name==='NotFoundError'?'No microphone found on this device.':'🎤 I need permission to use your microphone. Allow it in your browser settings, then try again.');return}
+  const type=['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/mp4'].find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
+  mr=new MediaRecorder(stream,type?{mimeType:type}:{});chunks=[];sent=false;mr.ondataavailable=e=>e.data&&e.data.size&&chunks.push(e.data);
+  mr.onstop=async()=>{cleanup();setMic(false);if(sent)return;sent=true;mic.classList.add('busy');const b=new Blob(chunks,{type:(mr.mimeType||type||'audio/webm')});
    if(b.size<1500){note('I didn’t hear anything. Tap the mic and try again 💜');mic.classList.remove('busy');return}
    try{const r=await fetch(URL_+'/stt',{method:'POST',headers:{'Content-Type':b.type},body:b});const d=await r.json().catch(()=>({}));
-    if(!r.ok)throw 0;if(!d.text){note('I didn’t catch that. Tap the mic and try again 💜');mic.classList.remove('busy');return}
-    ta.value=(ta.value.trim()?ta.value.trim()+' ':'')+d.text;grow();done()}catch(e){note('Couldn’t turn that into text. Please try again or type instead.');mic.classList.remove('busy')}};
-  mr.start();mic.classList.add('on');mic.setAttribute('aria-label','Stop recording');setTimeout(()=>{if(mr&&mr.state==='recording')mr.stop()},120000)};
+    if(!r.ok)throw 0;const t=(d.text||'').trim();if(!t){note('I didn’t catch that. Tap the mic and try again 💜');mic.classList.remove('busy');return}
+    ta.value=(ta.value.trim()?ta.value.trim()+' ':'')+t;grow();done()}catch(e){note('Couldn’t turn that into text. Please try again or type instead.');mic.classList.remove('busy')}};
+  mr.start(250);setMic(true);maxT=setTimeout(stop,60000);
+  // Auto-stop after ~2s of silence once she has started speaking.
+  try{ac=new (window.AudioContext||window.webkitAudioContext)();const an=ac.createAnalyser();an.fftSize=1024;ac.createMediaStreamSource(stream).connect(an);const buf=new Uint8Array(an.fftSize);let spoke=false,quiet=0;const t0=Date.now();
+   tick=setInterval(()=>{an.getByteTimeDomainData(buf);let sum=0;for(const v of buf){const x=(v-128)/128;sum+=x*x}const rms=Math.sqrt(sum/buf.length);
+    if(rms>0.04){spoke=true;quiet=0}else quiet+=100;if((spoke&&quiet>=2000)||(!spoke&&Date.now()-t0>8000))stop()},100)}catch(e){}};
 }
 p.querySelector('form').onsubmit=async e=>{e.preventDefault();const q=ta.value.trim();if(!q||btn.disabled)return;
 ta.value='';ta.style.height='auto';H.push({role:'user',content:q});save();add('ad-u',q);
