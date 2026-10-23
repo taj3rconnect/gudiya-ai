@@ -1,32 +1,46 @@
 {
-  "items": [
-    {
-      "date": "2026-10-22",
-      "product": "ChatGPT",
-      "headline": "Now ChatGPT can answer with interactive charts, checklists, and mini tools",
-      "explanation": "OpenAI rolled out GPT-6 in ChatGPT on October 7, 2026, with a new feature called Intelligent UI. Instead of only text, ChatGPT can now answer with charts, tappable buttons, forms, checklists, and small tools you can use right inside the chat, and it picks the format that fits your question. It's rolling out to every plan, including the free one, and it also starts answering sooner while it keeps thinking.",
-      "why": "When you need to explain a test plan, a release timeline, or a defect trend, you can ask for it as a clickable checklist or chart instead of a wall of text, then screenshot it or rebuild it in your Microsoft tools. Practice with made-up data at home; for real work data, stick to the tools Fiserv approves.",
-      "say": "Fun fact: ChatGPT can now turn a question into a little clickable tool, so our test plan could practically check itself off.",
-      "source": "https://openai.com/index/gpt-6-for-everyone",
-      "source_label": "OpenAI: GPT-6 and Intelligent UI for everyone",
-      "video": "IsL4dVezs18",
-      "video_title": "Introducing GPT-6 in ChatGPT with Intelligent UI (OpenAI)",
-      "tool": "ChatGPT",
-      "prompt": "Hi ChatGPT! I'm a QA and project coordinator practicing with made-up, non-confidential data. Build me an interactive release-readiness checklist for a pretend app release: 5 test areas (login, payments, search, accessibility, performance), each with a status I can tap to change (Not started, In progress, Passed, Failed), a progress bar showing how much is done, and a short summary at the top that updates as I change statuses."
-    },
-    {
-      "date": "2026-10-21",
-      "product": "Claude",
-      "headline": "Now Claude can build live dashboards that stay up to date",
-      "explanation": "Anthropic launched Claude Dashboards in beta on paid plans (announced October 8, 2026). You connect a data source and ask a question in plain language; Claude builds the dashboard, keeps it current as the data changes, and lets you click any number to see the query behind it. In the same update, Claude Docs, Slides, and Design came out of beta for every plan.",
-      "why": "For QA and project work, this is the grown-up version of your Day 10 exercise: a status or defect dashboard you don't rebuild every week, where every number can be checked. At work, it depends on which data connections Fiserv approves.",
-      "say": "Did you know Claude can now build a live dashboard from our data, and show the exact query behind every number?",
-      "source": "https://claude.com/resources/articles/dashboards-and-motion",
-      "source_label": "claude.com: Build live dashboards and animate explainers with Claude",
-      "video": "kj-SJaaVpMw",
-      "video_title": "Claude's NEW Dashboard Feature for Project Management (Blazing Zebra)",
-      "tool": "Claude",
-      "prompt": "Hi Claude! I'm a QA and project coordinator (I'm practicing with made-up, non-confidential data only). Build me a live QA status dashboard from this sample data: [paste the made-up defect list or test results]. Show KPI cards (tests run, pass rate, open Sev1/Sev2), a defects-by-severity chart, and a short 'needs attention' list. Explain how each number is calculated so I can check it."
-    }
-  ]
+ "items": [
+  {
+   "date": "2026-10-23",
+   "product": "Google",
+   "tool": "Gemini",
+   "headline": "Now Gemini can save your repeat tasks as skills it runs for you",
+   "explanation": "Google added skills to the Gemini app, starting October 13, 2026, plus a new Customize menu (announced October 21) where you manage them. A skill is a saved set of instructions, like \"turn meeting notes into decisions, action items, and open questions\". You build it once, and Gemini uses it automatically when your request matches, or you pick it by typing /. You can even stack two skills together in one chat.",
+   "why": "So much of QA and coordination work repeats every week: status updates, meeting recaps, bug write-ups in the same format. A skill means you explain the format once and get the same clean result every time. Practice with made-up data at home; for real work data, stick to the tools Fiserv approves, where Copilot has a similar idea with saved prompts.",
+   "say": "Fun fact: Gemini can now learn our bug report format once and then just do it, which is more than I can say for some of our tickets.",
+   "prompt": "Hi Gemini! I'm a QA and project coordinator practicing with made-up, non-confidential data. Help me create a skill called \"Bug report tidy-up\": whenever I paste rough notes about a bug, turn them into a clean report with a short title, steps to reproduce, expected result, actual result, severity (Sev1 to Sev4) with a one-line reason, and any open questions. Ask me what format I like before you save it.",
+   "source": "https://workspaceupdates.googleblog.com/2026/10/an-easier-way-to-customize-how-gemini-works-for-you.html",
+   "source_label": "Google Workspace Updates: An easier way to customize how Gemini works for you",
+   "video": "OiP0YBHLjqo",
+   "video_title": "Gemini Skills Are Finally Here (Master in 9 Minutes) (Futurepedia)"
+  },
+  {
+   "date": "2026-10-22",
+   "product": "ChatGPT",
+   "headline": "Now ChatGPT can answer with interactive charts, checklists, and mini tools",
+   "explanation": "OpenAI rolled out GPT-6 in ChatGPT on October 7, 2026, with a new feature called Intelligent UI. Instead of only text, ChatGPT can now answer with charts, tappable buttons, forms, checklists, and small tools you can use right inside the chat, and it picks the format that fits your question. It's rolling out to every plan, including the free one, and it also starts answering sooner while it keeps thinking.",
+   "why": "When you need to explain a test plan, a release timeline, or a defect trend, you can ask for it as a clickable checklist or chart instead of a wall of text, then screenshot it or rebuild it in your Microsoft tools. Practice with made-up data at home; for real work data, stick to the tools Fiserv approves.",
+   "say": "Fun fact: ChatGPT can now turn a question into a little clickable tool, so our test plan could practically check itself off.",
+   "source": "https://openai.com/index/gpt-6-for-everyone",
+   "source_label": "OpenAI: GPT-6 and Intelligent UI for everyone",
+   "video": "IsL4dVezs18",
+   "video_title": "Introducing GPT-6 in ChatGPT with Intelligent UI (OpenAI)",
+   "tool": "ChatGPT",
+   "prompt": "Hi ChatGPT! I'm a QA and project coordinator practicing with made-up, non-confidential data. Build me an interactive release-readiness checklist for a pretend app release: 5 test areas (login, payments, search, accessibility, performance), each with a status I can tap to change (Not started, In progress, Passed, Failed), a progress bar showing how much is done, and a short summary at the top that updates as I change statuses."
+  },
+  {
+   "date": "2026-10-21",
+   "product": "Claude",
+   "headline": "Now Claude can build live dashboards that stay up to date",
+   "explanation": "Anthropic launched Claude Dashboards in beta on paid plans (announced October 8, 2026). You connect a data source and ask a question in plain language; Claude builds the dashboard, keeps it current as the data changes, and lets you click any number to see the query behind it. In the same update, Claude Docs, Slides, and Design came out of beta for every plan.",
+   "why": "For QA and project work, this is the grown-up version of your Day 10 exercise: a status or defect dashboard you don't rebuild every week, where every number can be checked. At work, it depends on which data connections Fiserv approves.",
+   "say": "Did you know Claude can now build a live dashboard from our data, and show the exact query behind every number?",
+   "source": "https://claude.com/resources/articles/dashboards-and-motion",
+   "source_label": "claude.com: Build live dashboards and animate explainers with Claude",
+   "video": "kj-SJaaVpMw",
+   "video_title": "Claude's NEW Dashboard Feature for Project Management (Blazing Zebra)",
+   "tool": "Claude",
+   "prompt": "Hi Claude! I'm a QA and project coordinator (I'm practicing with made-up, non-confidential data only). Build me a live QA status dashboard from this sample data: [paste the made-up defect list or test results]. Show KPI cards (tests run, pass rate, open Sev1/Sev2), a defects-by-severity chart, and a short 'needs attention' list. Explain how each number is calculated so I can check it."
+  }
+ ]
 }
