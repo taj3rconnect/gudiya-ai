@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "date": "2026-10-24",
+   "product": "Grok Bot",
+   "tool": "Grok Bot",
+   "headline": "Now Grok Bot can build reports and dashboards that keep themselves up to date",
+   "explanation": "Grok Bot added Pages (in the October 22, 2026 update). You ask a Bot in chat for a report, a memo, a tracker, or a dashboard, and it builds a real page with text, tables, charts, and filters instead of a long chat reply. You can ask it to change the page anytime, share it by link, or set a routine so the Bot refreshes it on a schedule, like every Monday morning before a meeting.",
+   "why": "A weekly test status report or defect tracker is exactly the kind of thing you rebuild over and over. With a page, you describe it once and the Bot keeps it current, so you walk into the meeting with an up-to-date view instead of a scramble. Practice with made-up data at home; for real work data, stick to the tools Fiserv approves.",
+   "say": "Fun fact: Grok Bot can now build our status report and update it every Monday by itself, so the only thing left for me to do is look surprised it's done.",
+   "prompt": "Hi! I'm a QA and project coordinator practicing with made-up, non-confidential data. Make me a page called \"Weekly QA Status\" for a pretend app release: a short summary at the top, a table of 8 made-up test cases (name, area, status, owner), a chart of defects by severity (Sev1 to Sev4), and a filter to show only failed tests. Then tell me how I could have it refresh every Monday at 8 AM.",
+   "source": "https://x.ai/changelog/bot",
+   "source_label": "Grok Bot Changelog: Pages, new chat cards, and video creation (Oct 22, 2026)",
+   "video": "ydvi-RKnDjI",
+   "video_title": "GrokBot Just Won't Stop Getting Better (Pages) (Kacper Rutkiewicz | AI Made Simple)"
+  },
+  {
    "date": "2026-10-23",
    "product": "Google",
    "tool": "Gemini",
