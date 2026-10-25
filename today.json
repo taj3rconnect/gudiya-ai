@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "date": "2026-10-25",
+   "product": "Claude",
+   "tool": "Claude",
+   "headline": "Now Claude can send you a morning brief and flag what needs you before you ask",
+   "explanation": "Anthropic opened a research preview of Claude Duet on October 21, 2026, a new app (iPhone, Android, and claude.ai) where Claude works as a proactive helper. Each morning it sends a short brief on the most important items across the apps you've connected, checks them every few hours, and messages you only when something needs your attention. It can also keep working on tasks in the background after you close the app, and it always shows you what it's about to do and waits for your OK before it sends a message, pays for something, or deletes anything. For now it's a waitlist preview for US Pro and Max subscribers.",
+   "why": "As a coordinator, the hard part is often noticing things in time: a meeting double-booked, a reply you missed, a deadline creeping up. A helper that catches those and hands you a short list each morning is exactly that kind of support, while you stay in charge of anything that goes out. Practice with made-up data at home; for real work data, stick to the tools Fiserv approves, like Copilot.",
+   "say": "Fun fact: Claude now has an app that reads everything overnight and gives you a morning brief, so it's basically a coordinator for the coordinator.",
+   "prompt": "Hi Claude! I'm a QA and project coordinator practicing with made-up, non-confidential data. Pretend you're my morning assistant. Invent a realistic Monday for a software release: 6 made-up emails, 4 Teams-style messages, 3 Jira-style tickets, and my calendar for the day. Then give me a short morning brief: the 3 things that need me first, anything that looks like a conflict or a missed deadline, and what can wait. Keep it to one screen.",
+   "source": "https://claude.com/resources/articles/claude-duet",
+   "source_label": "Claude: Introducing Claude Duet (Oct 21, 2026)",
+   "video": "Fb-68zqcSVs",
+   "video_title": "Introducing Claude Duet (Claude, official, 1:39)"
+  },
+  {
    "date": "2026-10-24",
    "product": "Grok Bot",
    "tool": "Grok Bot",
