@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-10-26",
+   "product": "ChatGPT",
+   "tool": "ChatGPT",
+   "headline": "Now ChatGPT can build a slide deck you edit together and export to PowerPoint",
+   "explanation": "OpenAI started rolling out ChatGPT Slides in mid-October 2026. You ask ChatGPT to turn a conversation, your notes, or an outline into a presentation, and it builds a real, editable deck instead of a wall of text. You can click any chart or text box and ask for a specific change, invite teammates to edit the same deck at the same time and leave comments, then present right from ChatGPT or export it to PowerPoint, PDF, or Google Slides. For now it's for Pro, Business, and Enterprise plans that have the new Space area.",
+   "why": "Status decks are a big part of a coordinator's week: test progress, open defects, risks, and next steps. Turning rough notes into a clean first draft in minutes, then finishing it in PowerPoint, saves real time before a review meeting. Practice with made-up data at home; for real work data, stick to the tools Fiserv approves, like Copilot in PowerPoint.",
+   "say": "Fun fact: ChatGPT can now turn my messy meeting notes into a slide deck, so if our status update looks suspiciously polished, now you know why.",
+   "prompt": "Hi ChatGPT! I'm a QA and project coordinator practicing with made-up, non-confidential data. Invent realistic notes for a two-week testing sprint on a banking app's new login screen: test cases run and passed, 5 defects with severity, one risk to the release date, and next steps. Then turn them into a 6-slide project status deck for my manager: summary, progress chart, top defects, risks, decisions needed, and next steps. Keep each slide to three short points.",
+   "source": "https://help.openai.com/en/articles/20001605-creating-and-collaborating-on-slides-in-chatgpt",
+   "source_label": "OpenAI Help Center: Creating and collaborating on slides in ChatGPT (Oct 2026)"
+  },
+  {
    "date": "2026-10-25",
    "product": "Claude",
    "tool": "Claude",
