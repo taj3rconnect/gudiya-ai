@@ -10,10 +10,11 @@ const css=`.ad-p{position:fixed;right:16px;bottom:84px;width:min(380px,calc(100v
 .ad-mic{border:0;border-radius:50%;width:44px;height:44px;min-width:44px;background:#f3ecff;color:#7b2ff7;font-size:1.25rem;cursor:pointer;position:relative;align-self:flex-end}.ad-mic.on{background:#e0245e;color:#fff;animation:adp 1.2s infinite}@keyframes adp{0%{box-shadow:0 0 0 0 rgba(224,36,94,.55)}70%{box-shadow:0 0 0 12px rgba(224,36,94,0)}100%{box-shadow:0 0 0 0 rgba(224,36,94,0)}}.ad-mic.busy{opacity:.6}
 .ad-o{display:flex;align-items:center;gap:6px;padding:0 12px 8px;font-size:.78rem;color:#8a6aa8;background:#fff}.ad-o[hidden]{display:none}.ad-n{align-self:center;background:#fff7e6;color:#8a5a00;font-size:.85rem}
 .ad-f .ad-s{align-self:flex-end;height:44px}
+.ad-cf{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#f3ecff;color:#2b1a3d;font-size:.9rem}.ad-cf[hidden]{display:none}.ad-cf span{flex:1}.ad-cf button{border:0;border-radius:10px;padding:6px 12px;font-weight:600;cursor:pointer}.ad-cy{background:#7b2ff7;color:#fff}.ad-cn{background:#fff;color:#7b2ff7}
 @media(max-width:600px){.ad-mic{width:52px;height:52px;min-width:52px;font-size:1.4rem}.ad-f .ad-s{height:52px}.ad-p{right:0;left:0;bottom:0;width:100vw;height:100dvh;border-radius:0}}`;
 const s=document.createElement('style');s.textContent=css;document.head.append(s);
 const p=document.createElement('div');p.className='ad-p';p.setAttribute('role','dialog');p.setAttribute('aria-label','Ask Dad chat');
-p.innerHTML='<div class="ad-h"><b>💬 Ask Dad</b><button class="ad-c" title="New chat" aria-label="Start a new chat">↺</button><button class="ad-x" aria-label="Close">×</button></div><div class="ad-m" aria-live="polite"></div><form class="ad-f"><textarea rows="1" maxlength="4000" placeholder="Ask me anything…"></textarea><button type="button" class="ad-mic" aria-label="Speak your question" title="Tap to speak" hidden>🎤</button><button type="submit" class="ad-s">Send</button></form><label class="ad-o" hidden><input type="checkbox" class="ad-auto"> Send automatically when I stop talking</label>';
+p.innerHTML='<div class="ad-h"><b>💬 Ask Dad</b><button class="ad-c" title="Clear chat" aria-label="Clear chat">🗑</button><button class="ad-x" aria-label="Close">×</button></div><div class="ad-cf" hidden><span>Clear this chat from your screen?</span><button type="button" class="ad-cy">Clear</button><button type="button" class="ad-cn">Keep</button></div><div class="ad-m" aria-live="polite"></div><form class="ad-f"><textarea rows="1" maxlength="4000" placeholder="Ask me anything…"></textarea><button type="button" class="ad-mic" aria-label="Speak your question" title="Tap to speak" hidden>🎤</button><button type="submit" class="ad-s">Send</button></form><label class="ad-o" hidden><input type="checkbox" class="ad-auto"> Send automatically when I stop talking</label>';
 document.body.append(p);const M=p.querySelector('.ad-m'),ta=p.querySelector('textarea'),btn=p.querySelector('.ad-s');
 let H=[];try{H=JSON.parse(localStorage.getItem(K)||'[]')}catch(e){}
 const save=()=>localStorage.setItem(K,JSON.stringify(H.slice(-60)));
@@ -26,7 +27,13 @@ let fab=old;if(old){fab=old.cloneNode(true);old.replaceWith(fab)}
 const open=v=>{p.classList.toggle('on',v);if(v){M.scrollTop=M.scrollHeight;setTimeout(()=>ta.focus(),150)}};
 fab&&fab.addEventListener('click',()=>open(!p.classList.contains('on')));document.querySelector('.fab-l')?.addEventListener('click',()=>open(true));
 p.querySelector('.ad-x').onclick=()=>open(false);document.addEventListener('keydown',e=>{if(e.key==='Escape')open(false)});
-p.querySelector('.ad-c').onclick=()=>{H=[];save();render()};
+const cf=p.querySelector('.ad-cf');p.querySelector('.ad-c').onclick=()=>{cf.hidden=!cf.hidden;if(!cf.hidden)p.querySelector('.ad-cy').focus()};
+p.querySelector('.ad-cn').onclick=()=>{cf.hidden=true};p.querySelector('.ad-cy').onclick=()=>{H=[];save();cf.hidden=true;render();note('Chat cleared 💜')};
+// ---- Where is she in the course? Track the section most in view. ----
+let curSec=null;const secs=[...document.querySelectorAll('section.sec[id]')];
+function pickSec(){let best=null,bv=0;const vh=innerHeight;for(const el of secs){const r=el.getBoundingClientRect();const v=Math.min(r.bottom,vh)-Math.max(r.top,0);if(v>bv){bv=v;best=el}}if(best)curSec=best}
+addEventListener('scroll',()=>{clearTimeout(pickSec.t);pickSec.t=setTimeout(pickSec,200)},{passive:true});addEventListener('hashchange',pickSec);setTimeout(pickSec,500);
+function ctx(){if(!curSec)pickSec();if(!curSec)return{};const vh=innerHeight;let vis='';curSec.querySelectorAll('p,li,h2,h3,h4,.ex,blockquote').forEach(n=>{const r=n.getBoundingClientRect();if(r.bottom>0&&r.top<vh&&vis.length<1500)vis+=n.innerText.replace(/\s+/g,' ').trim()+'\n'});return{section:curSec.id,day:curSec.dataset.day?+curSec.dataset.day:undefined,exercise:vis.slice(0,1500)}}
 ta.addEventListener('input',()=>{ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight,110)+'px'});
 ta.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();p.querySelector('form').requestSubmit()}});
 
@@ -77,7 +84,7 @@ p.querySelector('form').onsubmit=async e=>{e.preventDefault();const q=ta.value.t
 ta.value='';ta.style.height='auto';H.push({role:'user',content:q});save();add('ad-u',q);
 const t=add('ad-a ad-t','');t.innerHTML='<span></span><span></span><span></span>';btn.disabled=true;
 try{if(!URL_)throw new Error('Dad\'s chat is getting set up. Please try again soon.');
-const r=await fetch(URL_+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:H.slice(-20).map(m=>({role:m.role,content:m.content}))})});
+const r=await fetch(URL_+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({messages:H.slice(-20).map(m=>({role:m.role,content:m.content}))},ctx()))});
 const d=await r.json().catch(()=>({}));if(!r.ok||!d.answer)throw new Error(d.error||'Hmm, that didn’t go through. Please try again in a moment.');
 t.remove();const vv=Array.isArray(d.videos)?d.videos.slice(0,2):[];H.push({role:'assistant',content:d.answer,videos:vv});save();add('ad-a',d.answer);vids(vv)}
 catch(err){t.remove();H.pop();save();add('ad-e',err.message);ta.value=q}finally{btn.disabled=false}};
