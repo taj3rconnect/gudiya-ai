@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-10-27",
+   "product": "Google",
+   "tool": "Gemini",
+   "headline": "Now Gemini can create, update, and answer from your notebooks right inside any chat",
+   "explanation": "On October 23, 2026, Google made Gemini Notebook a connected app in the Gemini app. In any chat you can type @Gemini Notebook and ask it to start a new notebook, add this chat or a file as a source, list what's in a notebook, or answer a question using only what you saved there. Gemini can also reach for your notebooks on its own when a question fits. It works on the Gemini website and phone app, for personal Google accounts and Workspace users.",
+   "why": "A coordinator keeps the same project facts handy all week: test plans, release dates, defect notes, and meeting decisions. Keeping them in one notebook means you can ask \"what did we decide about the login defects?\" from any chat instead of digging through old threads. Practice with made-up data in your personal Google account; for real Fiserv work, use the approved tools like Copilot and SharePoint.",
+   "say": "I've started filing my notes in an AI notebook, so if I answer your question before you finish asking it, that's why.",
+   "prompt": "Hi Gemini! I'm a QA and project coordinator practicing with made-up, non-confidential data. @Gemini Notebook please create a notebook called \"Practice Release: Mobile Login\". Then invent and add a short test plan, a list of 6 defects with severity and status, and notes from two status meetings. When that's done, answer from the notebook: which defects are still open, what's the biggest risk to the release date, and what three things should I bring up at tomorrow's standup?",
+   "source": "https://workspaceupdates.googleblog.com/2026/10/take-actions-on-your-notebooks-from-Gemini-Notebook-directly-in-the-Gemini-app.html",
+   "source_label": "Google Workspace Updates: Take actions on your notebooks from Gemini Notebook directly in the Gemini app (Oct 23, 2026)"
+  },
+  {
    "date": "2026-10-26",
    "product": "ChatGPT",
    "tool": "ChatGPT",
