@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-10-28",
+   "product": "Grok Bot",
+   "tool": "Grok Bot",
+   "headline": "Now Grok Bot can bring in what another AI assistant already knows about you",
+   "explanation": "Grok Bot added Import Memory in its October 26, 2026 update. In Settings, you can bring your preferences and context from another AI assistant, like ChatGPT or Claude, into your main Bot. That means you don't have to start from zero and explain your role, your projects, and how you like answers all over again.",
+   "why": "A coordinator's AI is most useful once it knows your role, your tools (Microsoft 365 and Jira), and how you like status updates written. Moving that over saves you a week of re-explaining yourself. Before you import, read what the other assistant saved about you and keep only what's true and safe. Never import anything with real Fiserv work data; use only your personal, non-confidential details.",
+   "say": "I just moved my AI's memory to a new assistant, so now two robots know I like my status reports short and my coffee strong.",
+   "prompt": "Hi! I'm a QA and project coordinator. Before I move to a new AI assistant, please list everything you remember about me: my role, my tools, my writing preferences, and my projects. Put each item on its own line. Then mark any item that is outdated, a guess, or includes confidential work details, so I can remove it before I import my memory anywhere else.",
+   "source": "https://x.ai/changelog/bot",
+   "source_label": "Grok Bot Changelog: Permissions, Vault payments, and question cards (Oct 26, 2026)"
+  },
+  {
    "date": "2026-10-27",
    "product": "Google",
    "tool": "Gemini",
