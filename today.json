@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-10-29",
+   "product": "ChatGPT",
+   "tool": "ChatGPT",
+   "headline": "Now ChatGPT can lock private chats behind a PIN",
+   "explanation": "On October 20, 2026, OpenAI started rolling out locked chats in ChatGPT. Open a chat's ••• menu, pick Lock chat, and set a 4-digit PIN. The chat moves to Projects > Locked chats and disappears from your normal history, pinned chats, and search. On phones you can open it with Face ID, Touch ID, or your phone's unlock. It's coming to all plans, including Free, so check the ••• menu to see if you have it yet.",
+   "why": "Coordinators share their screen in Teams calls all day, and one wrong click can show a private chat, like interview prep or a salary question. Locking those chats keeps them out of view when you present. Pick a PIN you won't forget: resetting a forgotten PIN deletes every locked chat for good. Locking hides a chat but doesn't encrypt it, so still keep real Fiserv work data out of personal AI tools.",
+   "say": "Don't worry about my screen share today, my AI now has a lock on it, unlike my snack drawer.",
+   "prompt": "Hi! I'm a QA and project coordinator and I want to grow my career. Help me prepare for a conversation with my manager about my next step. Ask me 5 questions, one at a time, about what I enjoy, what I've delivered this year, and where I want to be in 2 years. Then write me a short, confident talking-points list I can use in the meeting.",
+   "source": "https://techcrunch.com/2026/10/20/chatgpt-now-lets-you-lock-your-chats/",
+   "source_label": "TechCrunch: ChatGPT now lets you lock your chats (Oct 20, 2026)"
+  },
+  {
    "date": "2026-10-28",
    "product": "Grok Bot",
    "tool": "Grok Bot",
