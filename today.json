@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "date": "2026-10-30",
+   "product": "Google",
+   "tool": "Gemini",
+   "headline": "Now Gemini can make a file and let you edit it right inside the chat",
+   "explanation": "On October 29, 2026, Google updated the Gemini app so you can create, preview, and edit files without leaving your chat. Ask for a tracker, a slide deck, a document, or a PDF, then open it full screen to type changes yourself, or highlight a part and ask Gemini to fix it. When it looks right, open it in Google Sheets, Docs, or Slides, download a deck as PowerPoint or PDF, or save it to Drive. PDFs work on the web and the phone app; the other file types work on the Gemini website for now. It's available to everyone who has the Gemini app.",
+   "why": "A coordinator builds the same kinds of files every week: a test tracker, a status deck, a meeting summary. Now you can get a first draft and polish it in one place, instead of copying text out of a chat and fixing the format by hand. You can highlight one table and say 'turn this into a chart' instead of starting over. Practice with made-up or personal examples only, and never paste real Fiserv work data into personal AI tools.",
+   "say": "I asked Gemini for a test tracker and edited it in the chat before my coffee cooled down, so the coffee lost this round.",
+   "prompt": "Hi! I'm a QA and project coordinator. Create a Google Sheets test tracker for a made-up mobile app release. Use these columns: Test ID, Feature, Test Step, Expected Result, Status (Not Started, Pass, Fail, Blocked), Owner, Jira Ticket, and Notes. Fill in 10 sample rows with fake data. Then show me how to ask you to add a summary row that counts tests by status.",
+   "source": "https://workspaceupdates.googleblog.com/2026/10/create-preview-and-edit-files-directly-in-the-Gemini-app.html",
+   "source_label": "Google Workspace Updates: Create, preview, and edit files directly in the Gemini app (Oct 29, 2026)",
+   "video": "dJ-SIBF1nJQ",
+   "video_title": "Generate, edit, and preview files in Gemini (Google Gemini)"
+  },
+  {
    "date": "2026-10-29",
    "product": "ChatGPT",
    "tool": "ChatGPT",
