@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-10-31",
+   "product": "Grok Bot",
+   "tool": "Grok Bot",
+   "headline": "Now Grok Bot can copy a table out of the chat in one click, ready to paste",
+   "explanation": "Grok Bot's October 26, 2026 update added a copy button to every table it shows in the chat. One click copies the table for Slack or as markdown, a plain-text table format. Wide tables also open full screen with zoom, so you can read every column. The October 27 update also made copied replies keep their headings, lists, and links when you paste them into Gmail, Docs, Slack, or Notion.",
+   "why": "Coordinators turn messy notes into tables all day: test results, open defects, who owns what. Now you can ask for the table, copy it in one click, and paste it into your notes or a status update without fixing the layout by hand. A wide test matrix opens full screen, so no column hides off the edge. Practice with made-up data only, and never paste real Fiserv work data into personal AI tools.",
+   "say": "I copied a whole defect table in one click, so the only thing I fixed by hand today was my coffee.",
+   "prompt": "Hi! I'm a QA and project coordinator. Make a table of 8 made-up defects for a fake mobile app release. Use these columns: Defect ID, Summary, Severity (Critical, High, Medium, Low), Status (Open, In Progress, Fixed, Closed), Owner, and Jira Ticket. Sort it by severity. Under the table, write a 3-sentence status update I could post for my team.",
+   "source": "https://x.ai/changelog/bot",
+   "source_label": "Grok Bot Changelog: Permissions, Vault payments, and question cards (Oct 26, 2026)"
+  },
+  {
    "date": "2026-10-30",
    "product": "Google",
    "tool": "Gemini",
