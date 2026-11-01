@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "date": "2026-11-01",
+   "product": "Claude",
+   "tool": "Claude",
+   "headline": "Now Claude can start as a quick chat and finish a whole project in the same conversation",
+   "explanation": "On October 23, 2026, Anthropic made the new unified Claude generally available for Claude Enterprise, after it reached Pro and Max plans in September. You no longer pick between chat and Cowork, Claude's tool for bigger multi-step work. Every conversation starts as a chat, and when a task needs files or code, Claude keeps going in the cloud and hands back a finished document, analysis, or deck. The work keeps running after you close your laptop, and you can pick it up on the web, desktop, or phone. For Enterprise companies, it turns on by default on November 16, 2026, unless an admin keeps it off.",
+   "why": "A coordinator's day mixes quick questions with bigger jobs, like turning a week of test results into a status deck. Now both happen in one conversation, so you don't have to decide which tool to open first. You can start a report at your desk and check on it from your phone between meetings. Practice with made-up data only, and never paste real Fiserv work data into personal AI tools.",
+   "say": "I asked Claude one quick question and it handed back a whole status deck, so now I'm the one who needs a status update.",
+   "prompt": "Hi! I'm a QA and project coordinator. First, explain in two sentences what a test summary report is. Then make one for a made-up mobile app release: 120 test cases, 104 passed, 11 failed, 5 blocked, and 3 open Critical defects. Create it as a short Word document with a summary, a results table, the top risks, and next steps.",
+   "source": "https://claude.com/resources/articles/unified-claude-enterprise",
+   "source_label": "Claude: Claude Cowork and chat come together for Enterprise (Oct 23, 2026)",
+   "video": "qMUf-jwSpMo",
+   "video_title": "Claude Cowork and chat are now one Claude (Claude)"
+  },
+  {
    "date": "2026-10-31",
    "product": "Grok Bot",
    "tool": "Grok Bot",
