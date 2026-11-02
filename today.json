@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "date": "2026-11-02",
+   "product": "ChatGPT",
+   "tool": "ChatGPT Work (pick GPT-6.1 Terra)",
+   "headline": "Now ChatGPT can look at a screen, spot what's wrong, and click through the steps for you",
+   "explanation": "On October 26, 2026, OpenAI rolled out a new model called GPT-6.1 Terra in ChatGPT Work for Plus, Pro, Business, Enterprise, and Edu plans. It is built to understand images and screens in detail, and then take action in your browser, desktop, and apps. It also writes in a clear, direct style that puts the result first. You choose it from the model list under Advanced in ChatGPT Work or the ChatGPT desktop app; it isn't available in the regular Chat tab, and at work, your admin decides whether it's turned on.",
+   "why": "A lot of QA work is looking at screens: checking that a button, label, or error message matches the spec, and writing up what you saw. Terra is made for exactly that, so you can hand it a screenshot and get back a clean, plain-English list of issues ready to turn into Jira bugs. Practice with made-up screenshots and data only, and never paste real Fiserv work data into personal AI tools.",
+   "say": "ChatGPT can now look at a screen and find the bug, so I'm officially training my replacement to be me.",
+   "prompt": "Hi! I'm a QA and project coordinator. I'm attaching a screenshot of a made-up login page. Please check it like a QA tester would: look for spelling mistakes, misaligned or cut-off text, missing labels, unclear error messages, and anything that looks broken. For each problem, write a short Jira-style bug with a title, steps to reproduce, expected result, actual result, and a severity (Low, Medium, High, or Critical). Put the most serious bugs first.",
+   "source": "https://learn.chatgpt.com/docs/whats-new/october-26-30-2026",
+   "source_label": "ChatGPT Learn: What's new, October 26–30, 2026 (GPT-6.1 Terra)",
+   "video": "5EDBiSx67xM",
+   "video_title": "GPT-6.1 Terra: OpenAI's Computer-Use Model Is Here (One Step Ahead)"
+  },
+  {
    "date": "2026-11-01",
    "product": "Claude",
    "tool": "Claude",
