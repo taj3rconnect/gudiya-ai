@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "date": "2026-11-03",
+   "product": "Google",
+   "tool": "Gemini in Google Slides",
+   "headline": "Now Gemini can fix a whole Google Slides deck with one request",
+   "explanation": "On October 30, 2026, Google announced that Gemini in Google Slides can now edit many slides, or an entire presentation, from a single prompt in the Ask Gemini side panel. It can change fonts, colors, and backgrounds across the deck, match the style of another presentation, merge or add slides, and update content using your Google Drive files. When it's done, it shows a summary of what it changed, and you can undo any edit or use version history. It's rolling out slowly in English on paid Google Workspace plans (Business and Enterprise Standard and Plus) and Google AI Pro and Ultra.",
+   "why": "Coordinators spend a lot of time on weekly status decks where every slide needs the same small fix, like matching title sizes or updating a release date everywhere. Now that's one request instead of twenty clicks, so you can spend the time on what the slides actually say. Practice on a made-up deck, and never put real Fiserv work data into personal AI tools.",
+   "say": "I asked Gemini to fix all 30 slides at once, so the deck is finally more consistent than our test environment.",
+   "prompt": "Hi! I'm a QA and project coordinator. This is a made-up weekly test status deck. Please clean up the whole deck at once: make every slide title the same font size and color, change the release date to Friday everywhere it appears, combine the three defect slides into one slide with a short table of open bugs by severity (Critical, High, Medium, Low), and add a final slide called Next Steps with three short bullet points. Then tell me what you changed.",
+   "source": "https://workspaceupdates.googleblog.com/2026/10/edit-entire-presentations-with-gemini-in-Google-Slides.html",
+   "source_label": "Google Workspace Updates: Edit entire presentations with Gemini in Google Slides (Oct 30, 2026)",
+   "video": "UxGRwB5wuaM",
+   "video_title": "Gemini in Google Slides: Edit Your Whole Deck in One Prompt"
+  },
+  {
    "date": "2026-11-02",
    "product": "ChatGPT",
    "tool": "ChatGPT Work (pick GPT-6.1 Terra)",
