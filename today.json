@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "date": "2026-11-04",
+   "product": "Grok Bot",
+   "tool": "Grok Bot",
+   "headline": "Now Grok Bot can make a phone call for you and show you the conversation as it happens",
+   "explanation": "As of November 3, 2026, Grok Bot users can ask their Bot to phone a US business for them. You say who to call and what you need, and the Bot dials, works through the phone menu, and talks to the person while a live transcript runs in your chat. If they ask something the Bot doesn't know, a box pops up so you can type the answer, and the Bot checks with you before agreeing to anything. Every call says up front that it's a virtual assistant calling for you, and right now it only works with US phone numbers.",
+   "why": "Coordinators lose a lot of time on hold: chasing a vendor for a status, confirming a delivery, or asking a support line one simple question. Handing that call to your Bot means you can keep working on your test plan while it waits on hold, and you get a written summary at the end. Try it on a personal errand first, like asking a store for its opening hours, and never share real Fiserv work details or account numbers on a call.",
+   "say": "My Bot sat on hold for 25 minutes so I didn't have to, which is honestly the most loyal thing anyone's done for me this sprint.",
+   "prompt": "Hi! Please call [store name] at [their US phone number] and ask what time they open and close this Saturday, and whether they have [item] in stock. Don't agree to buy anything or give out any personal details. When you're done, send me a two-line summary of what they said.",
+   "source": "https://www.teslarati.com/elon-musks-grok-bot-is-picking-up-the-phone-now-and-the-first-calls-are-wild/",
+   "source_label": "Teslarati: Grok Bot is picking up the phone now (Nov 3, 2026)",
+   "video": "F-356TczoQU",
+   "video_title": "This New Grok Bot Feature Just Saved Me $500 a Year (Seriously), Peter Yang"
+  },
+  {
    "date": "2026-11-03",
    "product": "Google",
    "tool": "Gemini in Google Slides",
