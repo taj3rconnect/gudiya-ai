@@ -1,0 +1,32 @@
+# Local copy of the site on TajHome-Room. Production stays on GitHub Pages.
+# Start: docker compose -f docker/compose.yml up -d
+name: gudiya-ai
+
+services:
+  web:
+    image: nginxinc/nginx-unprivileged:1.30.6-alpine
+    container_name: gudiya-ai
+    restart: unless-stopped
+    # Default bridge: this host's Docker address pools are exhausted, and one container needs no network of its own.
+    network_mode: bridge
+    ports:
+      # 3078 is the registered port; docker/.env (git-ignored) can override it on one PC.
+      - "127.0.0.1:${GUDIYA_PORT:-3078}:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      # The repo is mounted live, so a git pull publishes new content without a rebuild.
+      - ..:/usr/share/nginx/html/gudiya-ai:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./config.local.js:/etc/nginx/local/config.js:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/gudiya-ai/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
